@@ -495,3 +495,226 @@ footer a:hover {
         grid-column: span 1;
     }
 }
+/* ======================== */
+/* 8. JQUERY DYNAMIC STYLES */
+/* ======================== */
+
+/* --- Модальное окно (Требование 3) --- */
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    z-index: 1001; /* Поверх всего */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.95); /* Почти черный оверлей */
+}
+
+.modal-content {
+    background-color: var(--color-secondary);
+    margin: 10% auto; /* 10% сверху и по центру */
+    padding: 30px 40px;
+    border: 3px solid var(--color-text); /* Брутальная рамка */
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    border-radius: 0;
+}
+
+.modal-content h3 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 0;
+    font-weight: 300;
+}
+
+.close-button {
+    color: var(--color-accent);
+    float: right;
+    font-size: 36px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.1s linear;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--color-text);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Форма */
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    border-radius: 0;
+    font-family: var(--font-primary);
+}
+
+#contact-form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+#contact-form button {
+    background-color: var(--color-border);
+    color: var(--color-text);
+    padding: 10px 20px;
+    border: 1px solid var(--color-text);
+    cursor: pointer;
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-family: var(--font-primary);
+    border-radius: 0;
+    transition: background-color 0.1s linear, color 0.1s linear;
+}
+#contact-form button:hover {
+    background-color: var(--color-text);
+    color: var(--color-primary);
+}
+#contact-form button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* Валидация и сообщения */
+.error-message {
+    color: #ff5555; /* Строгий красный цвет */
+    font-size: 0.8em;
+    margin-bottom: 10px;
+}
+.invalid-field {
+    border: 1px solid #ff5555 !important;
+}
+#form-message {
+    margin-top: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#form-message.success {
+    color: #00ff00; /* Строгий зеленый */
+}
+#form-message.error {
+    color: #ff5555;
+}
+
+
+/* --- Кнопка "Наверх" (Требование 9) --- */
+#back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 99;
+    border: 2px solid var(--color-text);
+    background-color: var(--color-secondary);
+    color: var(--color-text);
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 1.5em;
+    line-height: 1;
+    border-radius: 0;
+    transition: background-color 0.1s linear, color 0.1s linear;
+    font-family: var(--font-primary);
+}
+#back-to-top:hover {
+    background-color: var(--color-text);
+    color: var(--color-primary);
+}
+
+
+/* --- Карусель навыков (Требование 6) --- */
+#skills .skills-list {
+    position: relative; /* Для позиционирования кнопок */
+    overflow: hidden;
+    padding: 0 40px; /* Добавляем место для кнопок */
+    justify-content: flex-start; /* Навыки идут слева направо */
+}
+
+.skills-slider {
+    /* Стили задаются через jQuery, но overflow hidden важен */
+    width: 100%;
+}
+
+/* Скрываем все, кроме первого, для корректной работы слайдера */
+#skills .skills-list > div {
+    min-height: 120px;
+    margin-right: 0; /* Убираем margin/gap для flex-элементов */
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--color-secondary);
+    color: var(--color-text);
+    border: 2px solid var(--color-text);
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    line-height: 1;
+    font-family: var(--font-primary);
+    transition: background-color 0.1s linear, color 0.1s linear;
+}
+
+.slider-btn:hover {
+    background-color: var(--color-text);
+    color: var(--color-primary);
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
+
+
+/* --- Адаптивность для мобильного меню --- */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--color-text);
+    color: var(--color-text);
+    padding: 5px 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: var(--font-primary);
+    font-size: 0.9em;
+}
+
+/* Скрываем список навигации по умолчанию на мобильных устройствах */
+@media (max-width: 767px) {
+    .mobile-menu-toggle {
+        display: block;
+        margin-left: auto;
+    }
+
+    /* Скрываем навигацию по умолчанию, чтобы jQuery ее открыл */
+    #main-nav-list {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+    }
+    nav ul {
+        flex-direction: column;
+    }
+}

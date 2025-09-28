@@ -1,1 +1,0 @@
-console.log("Portfolio page is running.");
